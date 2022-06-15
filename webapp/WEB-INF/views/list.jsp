@@ -29,12 +29,12 @@
 			<td>${personVo.company}</td>
 		</tr>	
 		<tr>
-			<td><a href="/phonebook3/guest/updateForm?no=${personVo.personId }">수정폼</a></td>
-			<td><a href="/phonebook3/guest/delete?no=${personVo.personId }">삭제</a></td>
+			<td><a href="/phonebook4/guest/updateForm?no=${personVo.personId }">수정폼</a></td>
+			<td><a href="/phonebook4/guest/delete?no=${personVo.personId }">삭제</a></td>
 		</tr>	
 	</table>
 	</c:forEach>
 	<br><br>
-<a href="/phonebook3/guest/writeForm">전화번호등록</a>
+<a href="/phonebook4/guest/writeForm">전화번호등록</a>
 </body>
 </html>

@@ -32,7 +32,7 @@ public class PhoneService {
 		return personList;
 
 	}
-
+	
 	public int personInsert(PersonVo personVo) {
 		
 		int count = phoneDao.personInsert(personVo);
