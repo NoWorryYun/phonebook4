@@ -3,12 +3,19 @@
 
 <mapper namespace="phonebook">
 
+	<resultMap id="resultMapPersonVo" type="PersonVo">
+		<result column="person_id" property="personId" />
+		<result column="name" property="name" />
+		<result column="hp" property="hp" />
+		<result column="company" property="company" />
+	</resultMap>
+
 	<!-- 쿼리문작성 -->
 
-	<select id="selectList" resultType="com.javaex.vo.PersonVo">
+	<select id="selectList" resultMap="resultMapPersonVo">
 		<!-- <, > 등 인식하지 못하는 문장을 다 인식하는 쿼리문으로 만드는 태그<![CDATA[(쿼리문)]] -->
 		<![CDATA[
-		select  person_id personId,
+		select  person_id,
 				name,
 				hp,
 				company
@@ -18,14 +25,40 @@
 		]]>
 	</select>
 
-	<insert id="personInsert" parameterType="com.javaex.vo.PersonVo">
+	<insert id="personInsert" parameterType="PersonVo">
 		<![CDATA[
 			insert into person
 			values (seq_person_id.nextval, #{name}, #{hp}, #{company})		
 		]]>
-	
-	
 	</insert>
-	
+
+	<delete id="personDelete" parameterType="PersonVo">
+		<![CDATA[
+			delete from person
+			where person_id = #{no}		
+		]]>
+	</delete>
+
+	<update id="personUpdate" parameterType="PersonVo">
+		<![CDATA[
+			update person 
+			set name = #{name},
+				hp = #{hp},
+				company = #{company}
+			where person_id = #{personId}
+		]]>
+	</update>
+
+	<select id="getPerson" parameterType="int" resultMap="resultMapPersonVo">
+		<![CDATA[
+		select  person_id personId,
+				name,
+				hp,
+				company 
+		from person 
+		where person_id = #{personId}
+		]]>
+	</select>
+
 
 </mapper>
