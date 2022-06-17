@@ -1,6 +1,7 @@
 package com.javaex.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,17 @@ public class PhoneDao {
 		
 		return count;
 	}
+	
+	public int personInsert2(Map<String, Object> pMap) {
+		System.out.println("Dao=>personInsert2");
+		
+		System.out.println(pMap.toString());
+		
+		int count = sqlSession.insert("phonebook.personInsert2", pMap);
+		
+		return count;
+	}
+	
 	//삭제
 	public int personDelete(int no) {
 		
@@ -51,5 +63,18 @@ public class PhoneDao {
 		
 		return personVo;
 	}
+	
+	public Map<String, Object> getPerson2(int no) {
+		System.out.println("Dao - > getPerosn2");
+		
+		Map<String, Object> pMap = sqlSession.selectOne("phonebook.getPerson2", no);
+		System.out.println(pMap);
+		
+		
+		return pMap;
+	}
+	
+	
+	
 	
 }

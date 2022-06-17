@@ -1,6 +1,7 @@
 package com.javaex.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -66,7 +67,8 @@ public class PhoneContoller {
 		System.out.println(personVo);
 //		PhoneDao phoneDao = new PhoneDao();
 		
-		int count = phoneService.personInsert(personVo);
+		//int count = phoneService.personInsert(personVo);
+		int count = phoneService.personInsert2();
 		
 		return "redirect:/guest/list";
 
@@ -103,11 +105,25 @@ public class PhoneContoller {
 			System.out.println("PhoneController > updateForm");
 
 //			PhoneDao phoneDao = new PhoneDao();
+			//PersonVo personVo = phoneService.getPerson(no);
+			
 			PersonVo personVo = phoneService.getPerson(no);
-
+			
 			model.addAttribute("personVo", personVo);
 
 			return "updateForm";
+		}
+		
+		@RequestMapping(value = "/updateForm2", method = { RequestMethod.GET, RequestMethod.POST })
+		public String updateForm2(Model model, @RequestParam("no") int no) {
+			System.out.println("controller=>updateForm2");
+			
+			Map<String, Object> pMap = phoneService.getPerson2(no);
+			System.out.println(pMap);
+			
+			model.addAttribute("pMap", pMap);
+			
+			return "updateForm2";
 		}
 	/*
 	// 전화번호 삭제(주소로 받아오기)

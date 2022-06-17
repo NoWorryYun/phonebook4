@@ -32,6 +32,13 @@
 		]]>
 	</insert>
 
+	<insert id="personInsert2" parameterType="map">
+		<![CDATA[
+			insert into person
+			values (seq_person_id.nextval, #{name}, #{hp}, #{company})		
+		]]>
+	</insert>
+
 	<delete id="personDelete" parameterType="PersonVo">
 		<![CDATA[
 			delete from person
@@ -57,6 +64,17 @@
 				company 
 		from person 
 		where person_id = #{personId}
+		]]>
+	</select>
+	
+	<select id="getPerson2" parameterType="int" resultType="map">
+		<![CDATA[
+		select  person_id personId,
+				name,
+				hp,
+				company 
+		from person 
+		where person_id = #{no}
 		]]>
 	</select>
 
